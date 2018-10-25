@@ -1,0 +1,22 @@
+{
+  "name": "prettier-config-merger",
+  "version": "1.0.0-alpha",
+  "description": "A Prettier.io addon to dynamically merge configs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamiesonRoberts/prettier-config-merger.git"
+  },
+  "author": {
+    "email": "hello@jamiesonroberts.com",
+    "name": "Jamieson Roberts"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JamiesonRoberts/prettier-config-merger/issues"
+  },
+  "homepage": "https://github.com/JamiesonRoberts/prettier-config-merger#readme"
+}
