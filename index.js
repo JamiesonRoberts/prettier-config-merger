@@ -43,7 +43,7 @@ const lookupMerge = (acc, config) => {
 
     newOverRides.forEach(override => {
         if (!acc.overrides) acc.overrides = [];
-        if (acc.overrides.length === 0) acc.overrides.push(override);
+        if (acc.overrides.length === 0) return acc.overrides.push(override);
 
         // handle merging objects here
     });
