@@ -1,0 +1,20 @@
+{
+  "singleQuote": true,
+  "tabWidth": 4,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ["*.json", ".prettierrc", ".eslintrc"],
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "options": {
+        "arrowParens": "avoid"
+      }
+    }
+  ]
+}

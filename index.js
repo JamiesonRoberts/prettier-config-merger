@@ -21,14 +21,18 @@ const cosmicOptions = {
 
 const explorer = cosmic('prettier', cosmicOptions);
 
-const merger = (acc, config) => {
+const arrayComparison = (array1, array2) =>
+    array1.filter(value => array2.indexOf(value) < 0).length === 0;
+
+const lookupMerge = (acc, config) => {
     const configData = config.config;
 
-    let overRides = [];
+    let newOverRides = [];
+
     Object.keys(configData)
         .filter(key => {
             if (key === 'overrides') {
-                overRides = configData[key];
+                newOverRides = configData[key];
                 return false;
             }
             return true;
@@ -37,12 +41,18 @@ const merger = (acc, config) => {
             acc[key] = configData[key];
         });
 
-    console.log(overRides);
-    console.log(acc);
+    newOverRides.forEach(override => {
+        if (!acc.overrides) acc.overrides = [];
+        acc.overrides.push(override);
+    });
+
+    console.log(newOverRides);
+    console.log('---');
+
     return acc;
 };
 
-module.exports = paths => {
+module.exports = ({ extends: paths, rules = {} }) => {
     if (!paths) {
         throw new Error('You must pass in where to look for the config files');
     }
@@ -53,8 +63,12 @@ module.exports = paths => {
             if (!fileNames.includes(path)) {
                 return explorer.searchSync(require.resolve(path));
             }
-            return explorer.loadSync(path);
+            try {
+                return explorer.loadSync(path);
+            } catch (e) {
+                return null;
+            }
         })
         .filter(object => !!object)
-        .reduce(merger, {});
+        .reduce(lookupMerge, rules);
 };
